@@ -1,0 +1,7 @@
+node_modules/
+server/hmi.sqlite
+server/hmi.sqlite-shm
+server/hmi.sqlite-wal
+server/uploads/*
+!.gitkeep
+.env

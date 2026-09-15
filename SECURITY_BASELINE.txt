@@ -1,0 +1,23 @@
+HMI UNPI — SECURITY / DEPLOYMENT BASELINE
+
+This project has been prepared with a security-first frontend baseline.
+Important: a browser-only HTML/CSS/JS app cannot be made "unhackable". Real
+authentication, authorization, database protection, file-upload validation,
+rate limiting, and secret management must be enforced by the server/API.
+
+Recommended production controls:
+1. Serve only over HTTPS.
+2. Keep admin authentication server-side; never store admin passwords in JS/localStorage.
+3. Validate authorization on EVERY admin API endpoint (not only by hiding UI buttons).
+4. Store passwords as Argon2id/bcrypt hashes; never plaintext.
+5. Validate uploads by MIME/type AND file signature, limit size/dimensions, rename files server-side,
+   and store uploads outside executable/static server directories when possible.
+6. Reject HTML/SVG/scriptable uploads unless explicitly sanitized.
+7. Use parameterized SQL queries / ORM; never concatenate user input into SQL.
+8. Add CSRF protection for cookie-authenticated state-changing requests.
+9. Add rate limiting and login throttling/lockout.
+10. Add security headers at the hosting/server layer (CSP, HSTS, frame-ancestors,
+    nosniff, Referrer-Policy, Permissions-Policy).
+11. Keep secrets/API keys in environment variables, never in frontend source.
+12. Back up the database and test restore procedures.
+13. Keep dependencies updated and remove unused packages/node_modules from release ZIPs.

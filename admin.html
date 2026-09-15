@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dashboard Admin | HMI CABANG CIANJUR</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .admin {
+      max-width: 1250px;
+      margin: 35px auto;
+      padding: 0 18px
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 5px 25px #0001
+    }
+
+    .stat b {
+      font-size: 26px
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      margin: 18px 0;
+      flex-wrap: wrap
+    }
+
+    .toolbar input,
+    .toolbar select,
+    .login input,
+    .form-grid input,
+    .form-grid select,
+    .form-grid textarea {
+      padding: 11px;
+      border: 1px solid #ddd;
+      border-radius: 10px
+    }
+
+    .login {
+      max-width: 420px;
+      margin: 80px auto;
+      padding: 28px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 5px 30px #0002
+    }
+
+    .login input {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      margin: 10px 0
+    }
+
+    .hidden {
+      display: none !important
+    }
+
+    .btn2 {
+      padding: 7px 10px;
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer
+    }
+
+    .danger {
+      background: #b42318 !important;
+      color: #fff
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: #0008;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      z-index: 20
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 24px;
+      width: min(900px, 100%);
+      max-height: 90vh;
+      overflow: auto
+    }
+
+    .detail {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 8px 16px
+    }
+
+    .detail img {
+      width: 150px;
+      height: 190px;
+      object-fit: cover;
+      border-radius: 10px;
+      grid-row: 1/20
+    }
+
+    .detail b {
+      background: #f6f6f6;
+      padding: 8px;
+      border-radius: 7px
+    }
+
+    .detail span {
+      padding: 8px
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 18px
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 22px 0
+    }
+
+    .tab {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      background: #eee
+    }
+
+    .tab.active {
+      background: #10a878;
+      color: #fff
+    }
+
+    .section-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 5px 25px #0001;
+      margin-bottom: 24px
+    }
+
+    .table-wrap {
+      overflow: auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 5px 25px #0001;
+      margin-bottom: 25px
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse
+    }
+
+    th,
+    td {
+      padding: 11px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+      white-space: nowrap
+    }
+
+    .badge {
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #eee
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px
+    }
+
+    .form-grid .full {
+      grid-column: 1/-1
+    }
+
+    .muted {
+      color: #666;
+      font-size: 14px
+    }
+
+    @media(max-width:900px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr)
+      }
+    }
+
+    @media(max-width:600px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .detail {
+        grid-template-columns: 1fr
+      }
+
+      .detail img {
+        grid-row: auto
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr
+      }
+
+      .form-grid .full {
+        grid-column: auto
+      }
+    }
+
+    .cms-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px
+    }
+
+    .cms-grid>div {
+      padding: 16px;
+      border: 1px solid #eee;
+      border-radius: 14px
+    }
+
+    .cms-grid .full {
+      grid-column: 1/-1
+    }
+
+    .cms-grid textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      font-family: monospace
+    }
+
+    @media(max-width:700px) {
+      .cms-grid {
+        grid-template-columns: 1fr
+      }
+
+      .cms-grid .full {
+        grid-column: auto
+      }
+    }
+
+    .cms-nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 16px 0
+    }
+
+    .cms-btn {
+      border: 1px solid #ddd;
+      background: #f7f7f7;
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer
+    }
+
+    .cms-btn.active {
+      background: #10a878;
+      color: #fff;
+      border-color: #10a878
+    }
+
+    .cms-form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px
+    }
+
+    .cms-form label {
+      font-weight: 600;
+      font-size: 13px
+    }
+
+    .cms-form input,
+    .cms-form textarea,
+    .cms-form select {
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 6px;
+      padding: 11px;
+      border: 1px solid #ddd;
+      border-radius: 10px
+    }
+
+    .cms-form .full {
+      grid-column: 1/-1
+    }
+
+    .cms-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px
+    }
+
+    .cms-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 12px
+    }
+
+    .cms-item img {
+      width: 70px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 8px
+    }
+
+    .cms-actions {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap
+    }
+
+    .preview {
+      max-width: 140px;
+      max-height: 90px;
+      border-radius: 10px;
+      margin-top: 8px
+    }
+
+    .media-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-end;
+      flex-wrap: wrap
+    }
+
+    .media-tools {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center
+    }
+
+    .media-tools input[type=text],
+    .media-tools input[type=file] {
+      max-width: 260px
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 18px
+    }
+
+    .media-card {
+      border: 1px solid #eee;
+      border-radius: 14px;
+      padding: 10px;
+      background: #fff
+    }
+
+    .media-card img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 10px;
+      background: #f3f3f3
+    }
+
+    .media-meta {
+      display: grid;
+      gap: 4px;
+      margin: 8px 0
+    }
+
+    .media-meta b {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
+    .media-meta small {
+      color: #666
+    }
+
+    .media-card .cms-actions {
+      margin-top: 8px
+    }
+
+    @media(max-width:900px) {
+      .media-grid {
+        grid-template-columns: repeat(3, 1fr)
+      }
+    }
+
+    @media(max-width:600px) {
+      .media-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .media-tools {
+        width: 100%
+      }
+
+      .media-tools input {
+        width: 100%;
+        max-width: none;
+        box-sizing: border-box
+      }
+    }
+
+    @media(max-width:700px) {
+      .cms-form {
+        grid-template-columns: 1fr
+      }
+
+      .cms-form .full {
+        grid-column: auto
+      }
+
+      .cms-item {
+        align-items: flex-start;
+        flex-direction: column
+      }
+    }
+
+    /* === Command Center refresh: clearer labels + dark premium HMI === */
+    .admin-page { background: #020907; color: #f5faf7; }
+    .admin-page .navbar { margin-bottom: 0; }
+    .admin-page .admin { max-width: 1320px; padding: 22px 20px 60px; }
+    .admin-page .admin h1, .admin-page .admin h2, .admin-page .admin h3 { color: #f5faf7; }
+    .admin-page .login,
+    .admin-page .section-card,
+    .admin-page .stat,
+    .admin-page .table-wrap,
+    .admin-page .card,
+    .admin-page .cms-btn,
+    .admin-page .cms-item,
+    .admin-page .media-card {
+      background: linear-gradient(145deg, #071611, #04100c);
+      color: #f5faf7;
+      border-color: rgba(24,217,138,.20);
+      box-shadow: 0 14px 40px rgba(0,0,0,.28);
+    }
+    .admin-page .section-card { border: 1px solid rgba(24,217,138,.16); }
+    .admin-page .stat { border: 1px solid rgba(24,217,138,.12); }
+    .admin-page .stat b { color: #18d98a; }
+    .admin-page .muted { color: #a9beb4; }
+    .admin-page th { color: #bfe0d2; background: #06130e; }
+    .admin-page td { color: #e8f3ee; border-bottom-color: rgba(255,255,255,.08); }
+    .admin-page .badge { background: rgba(24,217,138,.12); color: #bdf5dd; border: 1px solid rgba(24,217,138,.18); }
+    .admin-page .toolbar input,
+    .admin-page .toolbar select,
+    .admin-page .login input,
+    .admin-page .form-grid input,
+    .admin-page .form-grid select,
+    .admin-page .form-grid textarea,
+    .admin-page .cms-form input,
+    .admin-page .cms-form textarea,
+    .admin-page .cms-form select,
+    .admin-page .media-tools input {
+      background: #020b08;
+      color: #f5faf7;
+      border-color: rgba(24,217,138,.22);
+      outline: none;
+    }
+    .admin-page input::placeholder,
+    .admin-page textarea::placeholder { color: #708b7e; }
+    .admin-page .tab { background: #081a14; color: #cde4da; border: 1px solid rgba(24,217,138,.12); }
+    .admin-page .tab.active { background: linear-gradient(135deg,#08b96d,#007b4e); color:#fff; }
+    .admin-page .cms-heading {
+      display:flex; justify-content:space-between; gap:20px; align-items:flex-end;
+      margin-bottom:18px; flex-wrap:wrap;
+    }
+    .admin-page .cms-kicker {
+      color:#18d98a; font-size:11px; font-weight:900; letter-spacing:2.5px; margin-bottom:5px;
+    }
+    .admin-page .cms-heading h2 { margin-bottom:4px; }
+    .admin-page .cms-tip {
+      padding:12px 15px; border-radius:12px; color:#cfe8dd;
+      background:rgba(0,184,107,.07); border:1px solid rgba(24,217,138,.16);
+      font-size:13px;
+    }
+    .admin-page .cms-nav {
+      display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:18px 0 22px;
+    }
+    .admin-page .cms-btn {
+      min-height:78px; text-align:left; padding:12px 13px; cursor:pointer;
+      display:grid; grid-template-columns:28px 1fr; grid-template-rows:auto auto;
+      column-gap:8px; align-content:center; transition:.18s; border:1px solid rgba(24,217,138,.14);
+    }
+    .admin-page .cms-btn span { grid-row:1/3; font-size:22px; align-self:center; }
+    .admin-page .cms-btn strong { color:#eefaf5; font-size:14px; line-height:1.2; }
+    .admin-page .cms-btn small { color:#8ea99d; font-size:11px; margin-top:3px; }
+    .admin-page .cms-btn:hover { transform:translateY(-2px); border-color:rgba(24,217,138,.42); }
+    .admin-page .cms-btn.active {
+      background:linear-gradient(135deg,#0aa968,#006f49);
+      border-color:#18d98a; box-shadow:0 10px 26px rgba(0,184,107,.20);
+    }
+    .admin-page .cms-btn.active strong,
+    .admin-page .cms-btn.active small { color:#fff; }
+    .admin-page .cms-item { border:1px solid rgba(24,217,138,.13); }
+    .admin-page .cms-item small, .admin-page .media-meta small { color:#8ea99d; }
+    .admin-page .btn2 { background:#0a2018; color:#eafff5; border:1px solid rgba(24,217,138,.18); }
+    .admin-page .btn2:hover { background:#0d3326; }
+    .admin-page .danger { border-color:rgba(255,80,80,.28); }
+    .admin-page .cms-form label { color:#cfe4db; }
+    .admin-page .preview { border:1px solid rgba(24,217,138,.18); }
+    @media(max-width:1000px) {
+      .admin-page .cms-nav { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    }
+    @media(max-width:650px) {
+      .admin-page .cms-nav { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+      .admin-page .cms-btn { min-height:72px; padding:10px; }
+      .admin-page .cms-btn strong { font-size:12px; }
+      .admin-page .cms-btn small { font-size:10px; }
+      .admin-page .cms-heading { align-items:stretch; }
+      .admin-page .cms-tip { width:100%; }
+    }
+
+  </style>
+</head>
+
+<body class="admin-page">
+  <nav class="navbar"><a class="brand" href="index.html">HMI CABANG CIANJUR</a>
+    <div class="nav-menu"><a href="index.html">Beranda</a><a href="daftar.html">Pendaftaran</a><a
+        href="cek-penerimaan.html">Cek Penerimaan</a><a href="kader.html">Database Kader</a></div>
+  </nav>
+  <section id="loginBox" class="login">
+    <h2>🔐 Login Admin</h2>
+    <p>Dashboard ini mengelola penerimaan kader, database kader, dan riwayat penolakan.</p><input id="user"
+      placeholder="Username" autocomplete="username"><input id="pass" type="password" placeholder="Password"
+      autocomplete="current-password"><button class="btn" onclick="login()">Masuk</button>
+    <p id="loginMsg"></p>
+  </section>
+  <main id="panel" class="admin hidden">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap">
+      <div>
+        <h1>Dashboard Admin HMI CABANG CIANJUR</h1>
+        <p class="muted">Satu dashboard untuk Penerimaan Kader dan Database Kader.</p>
+      </div><button class="btn" onclick="logout()">Keluar</button>
+    </div>
+    <div class="grid">
+      <div class="stat">Pendaftar<br><b id="total">0</b></div>
+      <div class="stat">Menunggu<br><b id="menunggu">0</b></div>
+      <div class="stat">Verifikasi<br><b id="verifikasi">0</b></div>
+      <div class="stat">Diterima<br><b id="diterima">0</b></div>
+      <div class="stat">Ditolak<br><b id="ditolak">0</b></div>
+      <div class="stat">Database Kader<br><b id="kader">0</b></div>
+    </div>
+    <div class="tabs"><button class="tab active" id="tabPenerimaan" onclick="switchTab('penerimaan')">📝 Penerimaan
+        Kader</button><button class="tab" id="tabKader" onclick="switchTab('kader')">👥 Database Kader</button><button
+        class="tab" id="tabCms" onclick="switchTab('cms')">⚙️ Kelola Website</button><button class="tab"
+        id="tabRejected" onclick="switchTab('rejected')">❌ Riwayat Ditolak</button></div>
+
+    <section id="penerimaan" class="section-card">
+      <h2>📝 Penerimaan Kader Baru</h2>
+      <div class="toolbar"><input id="q" placeholder="🔎 Cari nama / nomor / prodi / WA"><select id="status">
+          <option value="semua">Semua status</option>
+          <option>Menunggu</option>
+          <option>Verifikasi</option>
+          <option>Diterima</option>
+          <option>Ditolak</option>
+        </select><button class="btn" onclick="loadApplicants()">Refresh</button><button class="btn"
+          onclick="exportFile('/api/admin/export/applicants.xls?status='+encodeURIComponent($('status').value),'Pendaftar_HMI_UNPI.xls')">⬇️
+          Excel</button><button class="btn"
+          onclick="exportFile('/api/admin/export/applicants.xls?status=Diterima','Pendaftar_Diterima_HMI_UNPI.xls')">⬇️
+          Excel Diterima</button></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Pendaftar</th>
+              <th>Prodi</th>
+              <th>Angkatan</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="kader" class="section-card hidden">
+      <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap">
+        <div>
+          <h2>👥 Database Kader</h2>
+          <p class="muted">Kader yang diterima otomatis masuk ke sini. Admin juga dapat menambah/edit data.</p>
+        </div><button class="btn" onclick="openForm()">➕ Tambah Kader</button>
+      </div>
+      <div class="toolbar"><input id="kq" placeholder="🔎 Cari nama / NIM / prodi"><select id="kstatus">
+          <option value="semua">Semua Status</option>
+          <option>Aktif</option>
+          <option>Alumni</option>
+          <option>Tidak Aktif</option>
+        </select><select id="kangkatan">
+          <option value="semua">Semua Angkatan</option>
+        </select><button class="btn" onclick="loadKader()">Refresh</button><button class="btn"
+          onclick="exportFile('/api/admin/export/kader.xls','Database_Kader_HMI_UNPI.xls')">⬇️ Excel</button></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>NIM</th>
+              <th>Prodi</th>
+              <th>Angkatan</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="kaderRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="cms" class="section-card hidden">
+      <div class="cms-heading">
+        <div>
+          <div class="cms-kicker">COMMAND CENTER</div>
+          <h2>⚙️ Kelola Website</h2>
+          <p class="muted">Semua isi website dapat diperbarui dari sini tanpa membuka coding.</p>
+        </div>
+        <div class="cms-tip">💡 <b>Tips:</b> Pilih menu di bawah, edit isinya, lalu tekan <b>Simpan</b>.</div>
+      </div>
+      <div class="cms-nav" aria-label="Menu pengelolaan website">
+        <button class="cms-btn active" data-key="berita" onclick="cmsOpen('berita')"><span>📰</span><strong>Berita</strong><small>Artikel & informasi</small></button>
+        <button class="cms-btn" data-key="galeri" onclick="cmsOpen('galeri')"><span>🖼️</span><strong>Galeri</strong><small>Foto kegiatan</small></button>
+        <button class="cms-btn" data-key="agenda" onclick="cmsOpen('agenda')"><span>📅</span><strong>Agenda</strong><small>Jadwal kegiatan</small></button>
+        <button class="cms-btn" data-key="struktur" onclick="cmsOpen('struktur')"><span>👥</span><strong>Struktur Organisasi</strong><small>Pengurus & jabatan</small></button>
+        <button class="cms-btn" data-key="media" onclick="cmsOpen('media')"><span>📁</span><strong>Media</strong><small>Kelola foto</small></button>
+        <button class="cms-btn" data-key="halaman" onclick="cmsOpen('halaman')"><span>📄</span><strong>Konten Halaman</strong><small>Judul & isi halaman</small></button>
+      </div>
+      <div id="cmsEditor" class="cms-editor"></div>
+    </section>
+    <section id="rejected" class="section-card hidden">
+      <h2>❌ Riwayat Kader Ditolak</h2>
+      <div class="toolbar"><button class="btn" onclick="loadRejected()">Refresh</button><button class="btn"
+          onclick="exportFile('/api/admin/export/rejected.xls','Riwayat_Kader_Ditolak_HMI_UNPI.xls')">⬇️ Excel
+          Riwayat</button></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>Nomor Pendaftaran</th>
+              <th>Prodi</th>
+              <th>Angkatan</th>
+              <th>Ditolak</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="rejectedRows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="card">
+      <h2 id="modalTitle">Detail</h2>
+      <div id="detail" class="detail"></div>
+      <div class="actions"><button class="btn" id="wordBtn">📝 Word</button><button class="btn" id="pdfBtn">📄 PDF /
+          Cetak</button><button class="btn" id="photoBtn">📷 Unduh Foto</button><button class="btn"
+          onclick="closeModal()">Tutup</button></div>
+    </div>
+  </div>
+  <div id="kaderModal" class="modal hidden">
+    <div class="card">
+      <h2 id="formTitle">Tambah Kader</h2>
+      <form id="form"><input type="hidden" id="kid">
+        <div class="form-grid"><input id="nama" placeholder="Nama lengkap *" required><input id="nim"
+            placeholder="NIM"><input id="prodi" placeholder="Program studi"><input id="angkatan"
+            placeholder="Angkatan"><input id="tahun_masuk" placeholder="Tahun masuk HMI"><select id="kstatusForm">
+            <option>Aktif</option>
+            <option>Alumni</option>
+            <option>Tidak Aktif</option>
+          </select><input id="kampus" placeholder="Kampus"><input id="fakultas" placeholder="Fakultas"><input id="lk1"
+            placeholder="LK I (tahun/status)"><input id="lk2" placeholder="LK II (tahun/status)"><input id="lk3"
+            placeholder="LK III (tahun/status)"><input id="jabatan" placeholder="Jabatan/pernah menjabat"><input
+            id="periode" placeholder="Periode kepengurusan"><input id="email" placeholder="Email (admin)"><input id="wa"
+            placeholder="Nomor WhatsApp (admin)"><textarea id="keterangan" class="full" rows="3"
+            placeholder="Keterangan"></textarea></div>
+        <p class="muted">Data pribadi lengkap dikelola hanya oleh admin.</p>
+        <div class="actions"><button class="btn" type="submit">💾 Simpan</button><button class="btn" type="button"
+            onclick="closeKaderForm()">Batal</button></div>
+        <p id="formMsg"></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const forceLogin = new URLSearchParams(location.search).get('login') === '1'; if (forceLogin) localStorage.removeItem('hmi_admin_token');
+    const token = () => localStorage.getItem('hmi_admin_token'); const $ = id => document.getElementById(id);
+    async function logout() { try { await fetch('/api/auth/logout', { method: 'POST', credentials: 'same-origin' }) } finally { localStorage.removeItem('hmi_admin_token'); location.href = 'admin.html?login=1' } }
+    async function login() { const r = await fetch('/api/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: $('user').value, password: $('pass').value }) }); const d = await r.json(); if (!r.ok) { $('loginMsg').textContent = d.message; return } localStorage.removeItem('hmi_admin_token'); history.replaceState({}, '', 'admin.html'); show() }
+    async function show() { try { const r = await fetch('/api/admin/stats', { credentials: 'same-origin' }); if (!r.ok) return; $('loginBox').classList.add('hidden'); $('panel').classList.remove('hidden'); loadAll() } catch (e) { } }
+    async function api(url, opt = {}) { opt.credentials = 'same-origin'; opt.headers = { ...(opt.headers || {}) }; if (opt.body && typeof opt.body !== 'string') opt.body = JSON.stringify(opt.body); if (opt.body) opt.headers['Content-Type'] = 'application/json'; const r = await fetch(url, opt); if (r.status === 401) { logout(); throw new Error('Sesi admin berakhir. Silakan login kembali.') } const d = await r.json(); if (!r.ok) throw new Error(d.message || 'Terjadi kesalahan'); return d }
+    function esc(s) { return String(s ?? '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m])) }
+    async function loadAll() { await loadStats(); await loadApplicants(); await loadKader(); await loadRejected() }
+    async function loadStats() { const s = await api('/api/admin/stats'); Object.keys(s).forEach(k => $(k) && ($(k).textContent = s[k])) }
+    async function loadApplicants() { try { const p = new URLSearchParams({ q: $('q').value, status: $('status').value }); const data = await api('/api/admin/applicants?' + p); $('rows').innerHTML = data.map(a => `<tr><td>${esc(a.registration_no)}</td><td><b>${esc(a.nama)}</b><br><small>${esc(a.wa)}</small></td><td>${esc(a.prodi)}</td><td>${esc(a.angkatan)}</td><td><span class="badge">${esc(a.status)}</span></td><td><button class="btn2" onclick="detailApplicant(${a.id})">👁️ Detail</button> <button class="btn2" onclick="setStatus(${a.id},'Verifikasi')">Verifikasi</button> <button class="btn2" onclick="setStatus(${a.id},'Diterima')">✅ Terima</button> <button class="btn2 danger" onclick="setStatus(${a.id},'Ditolak')">❌ Tolak</button></td></tr>`).join('') || '<tr><td colspan="6">Belum ada data.</td></tr>'; await loadStats() } catch (e) { alert(e.message) } }
+    async function setStatus(id, st) { const note = prompt(st === 'Ditolak' ? 'Alasan/catatan penolakan (opsional):' : 'Catatan admin (opsional):', ''); if (note === null) return; try { const d = await api('/api/admin/applicants/' + id + '/status', { method: 'PATCH', body: { status: st, admin_note: note } }); alert(d.message); await loadAll() } catch (e) { alert(e.message) } }
+    async function detailApplicant(id) { try { const a = await api('/api/admin/applicants/' + id); const photo = a.photo ? `<img src="/api/admin/applicants/${a.id}/photo" alt="Foto">` : '<div>Tidak ada foto</div>'; $('modalTitle').textContent = 'Detail Pendaftar'; $('detail').innerHTML = photo + `<b>Nomor Pendaftaran</b><span>${esc(a.registration_no)}</span><b>Nama</b><span>${esc(a.nama)}</span><b>WhatsApp</b><span>${esc(a.wa)}</span><b>Program Studi</b><span>${esc(a.prodi)}</span><b>Angkatan</b><span>${esc(a.angkatan)}</span><b>Alasan</b><span>${esc(a.alasan)}</span><b>Status</b><span>${esc(a.status)}</span><b>Catatan Admin</b><span>${esc(a.admin_note || '-')}</span>`; $('wordBtn').onclick = () => download('/api/admin/applicants/' + id + '/word'); $('photoBtn').onclick = () => download('/api/admin/applicants/' + id + '/photo'); $('pdfBtn').onclick = () => openPrint(id); $('modal').classList.remove('hidden') } catch (e) { alert(e.message) } }
+    function closeModal() { $('modal').classList.add('hidden') }
+    async function download(url) { try { const r = await fetch(url, { credentials: 'same-origin' }); if (!r.ok) throw new Error('Gagal mengunduh file'); const blob = await r.blob(); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = (r.headers.get('Content-Disposition') || '').match(/filename="?([^";]+)"?/i)?.[1] || 'download'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000) } catch (e) { alert(e.message) } }
+    function openPrint(id) { window.open('/api/admin/applicants/' + id + '/print', '_blank', 'noopener') }
+    async function exportFile(url, name) { try { const r = await fetch(url, { credentials: 'same-origin' }); if (!r.ok) throw new Error('Gagal membuat file Excel'); const blob = await r.blob(); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000) } catch (e) { alert(e.message) } }
+    function switchTab(tab) {
+      ['penerimaan', 'kader', 'cms', 'rejected'].forEach(x => $(x).classList.toggle('hidden', x !== tab));
+      ['tabPenerimaan', 'tabKader', 'tabCms', 'tabRejected'].forEach(x => $(x).classList.remove('active'));
+      const tabId = { penerimaan: 'tabPenerimaan', kader: 'tabKader', cms: 'tabCms', rejected: 'tabRejected' }[tab];
+      if (tabId) $(tabId).classList.add('active');
+      if (tab === 'kader') loadKader();
+      if (tab === 'rejected') loadRejected();
+      if (tab === 'cms') loadCMSAdmin();
+    }
+    async function loadRejected() { try { const data = await api('/api/admin/rejected'); $('rejectedRows').innerHTML = data.map((r, i) => `<tr><td>${i + 1}</td><td>${esc(r.nama)}</td><td>${esc(r.registration_no)}</td><td>${esc(r.prodi)}</td><td>${esc(r.angkatan)}</td><td>${new Date(r.rejected_at).toLocaleString('id-ID')}</td><td><button class="btn2" onclick="detailApplicant(${r.applicant_id})">Lihat</button></td></tr>`).join('') || '<tr><td colspan="7">Belum ada riwayat ditolak.</td></tr>' } catch (e) { alert(e.message) } }
+    async function loadKader() { try { const p = new URLSearchParams({ q: $('kq').value, status: $('kstatus').value, angkatan: $('kangkatan').value }); const data = await api('/api/admin/kader?' + p); const years = [...new Set(data.map(k => String(k.angkatan || '')).filter(Boolean))].sort(); const old = $('kangkatan').value; $('kangkatan').innerHTML = '<option value="semua">Semua Angkatan</option>' + years.map(y => `<option value="${esc(y)}">${esc(y)}</option>`).join(''); $('kangkatan').value = years.includes(old) ? old : 'semua'; $('kaderRows').innerHTML = data.map((k, i) => `<tr><td>${i + 1}</td><td>${esc(k.nama)}</td><td>${esc(k.nim)}</td><td>${esc(k.prodi)}</td><td>${esc(k.angkatan)}</td><td>${esc(k.status)}</td><td><button class="btn2" onclick="lihatKader(${k.id})">👁️ Lihat</button> <button class="btn2" onclick="editKader(${k.id})">Edit</button> <button class="btn2 danger" onclick="hapusKader(${k.id})">Hapus</button></td></tr>`).join('') || '<tr><td colspan="7">Belum ada data kader.</td></tr>' } catch (e) { alert(e.message) } }
+    async function lihatKader(id) { try { const k = await api('/api/admin/kader/' + id); const foto = k.foto ? `<img src="/api/admin/kader/${id}/photo" alt="Foto kader">` : '<div>Tidak ada foto</div>'; $('modalTitle').textContent = 'Data Kader'; $('detail').innerHTML = foto + `<b>Nama</b><span>${esc(k.nama)}</span><b>NIM</b><span>${esc(k.nim || '-')}</span><b>Prodi</b><span>${esc(k.prodi || '-')}</span><b>Angkatan</b><span>${esc(k.angkatan || '-')}</span><b>Status</b><span>${esc(k.status || '-')}</span><b>WhatsApp</b><span>${esc(k.wa || '-')}</span><b>Fakultas</b><span>${esc(k.fakultas || '-')}</span><b>Kampus</b><span>${esc(k.kampus || '-')}</span><b>Jabatan</b><span>${esc(k.jabatan || '-')}</span><b>Keterangan</b><span>${esc(k.keterangan || '-')}</span>`; $('wordBtn').style.display = 'none'; $('pdfBtn').onclick = () => window.print(); $('photoBtn').onclick = () => download('/api/admin/kader/' + id + '/photo'); $('modal').classList.remove('hidden') } catch (e) { alert(e.message) } }
+    function resetModalButtons() { $('wordBtn').style.display = 'inline-block' }
+    function openForm(k = {}) { $('kaderModal').classList.remove('hidden'); $('formTitle').textContent = k.id ? 'Edit Kader' : 'Tambah Kader'; $('formMsg').textContent = ''; const map = { kid: 'id', nama: 'nama', nim: 'nim', prodi: 'prodi', angkatan: 'angkatan', tahun_masuk: 'tahun_masuk', kstatusForm: 'status', kampus: 'kampus', fakultas: 'fakultas', lk1: 'lk1', lk2: 'lk2', lk3: 'lk3', jabatan: 'jabatan', periode: 'periode', email: 'email', wa: 'wa', keterangan: 'keterangan' }; Object.keys(map).forEach(id => $(id).value = k[map[id]] ?? (id === 'kstatusForm' ? 'Aktif' : '')) }
+    function closeKaderForm() { $('kaderModal').classList.add('hidden') }
+    async function editKader(id) { try { openForm(await api('/api/admin/kader/' + id)) } catch (e) { alert(e.message) } }
+    async function hapusKader(id) { if (!confirm('Hapus data kader ini?')) return; try { alert((await api('/api/admin/kader/' + id, { method: 'DELETE' })).message); await loadAll() } catch (e) { alert(e.message) } }
+    $('form').addEventListener('submit', async e => { e.preventDefault(); $('formMsg').textContent = 'Menyimpan...'; const obj = {};['nama', 'nim', 'prodi', 'angkatan', 'tahun_masuk', 'kampus', 'fakultas', 'lk1', 'lk2', 'lk3', 'jabatan', 'periode', 'email', 'wa', 'keterangan'].forEach(f => obj[f] = $(f).value.trim()); obj.status = $('kstatusForm').value; try { const id = $('kid').value; const d = await api(id ? '/api/admin/kader/' + id : '/api/admin/kader', { method: id ? 'PUT' : 'POST', body: obj }); alert(d.message); closeKaderForm(); await loadAll() } catch (e) { $('formMsg').textContent = e.message } })
+    $('q').oninput = loadApplicants; $('status').onchange = loadApplicants; $('kq').oninput = loadKader; $('kstatus').onchange = loadKader; $('kangkatan').onchange = loadKader;
+    let cmsCache = {}; let cmsTab = 'berita'; let cmsEditing = null;
+    async function loadCMSAdmin() { try { cmsCache = await api('/api/cms'); cmsOpen(cmsTab) } catch (e) { alert(e.message) } }
+    function cmsOpen(key, edit = null) {
+      cmsTab = key; cmsEditing = edit;
+      document.querySelectorAll('.cms-btn').forEach(b => b.classList.toggle('active', b.dataset.key === key));
+      const e = $('cmsEditor');
+      if (key === 'media') return renderMediaManager();
+      if (key === 'halaman') return renderPageManager();
+      const cfg = {
+        berita:{title:'Berita',fields:[['judul','Judul'],['tanggal','Tanggal'],['kategori','Kategori'],['ringkas','Ringkasan'],['isi','Isi Berita'],['gambar','URL/hasil upload foto'],['status','Status']],status:['Draft','Publikasi']},
+        galeri:{title:'Galeri',fields:[['judul','Judul Kegiatan'],['tanggal','Tanggal'],['gambar','URL/hasil upload foto'],['deskripsi','Deskripsi']]},
+        agenda:{title:'Agenda',fields:[['tanggal','Tanggal'],['judul','Nama Kegiatan'],['lokasi','Lokasi'],['keterangan','Keterangan'],['status','Status']],status:['Akan Datang','Berlangsung','Selesai']},
+        struktur:{title:'Struktur Organisasi',fields:[['nama','Nama'],['jabatan','Jabatan'],['bagian','Bagian/Divisi'],['periode','Periode'],['urutan','Urutan Tampil'],['tampil','Tampilkan?'],['foto','URL/hasil upload foto']],status:['Ya','Tidak']}
+      };
+      const x=cfg[key];
+      e.innerHTML=`<h3>${x.title}</h3><div class="cms-form">${x.fields.map(([id,l])=>id==='status'&&x.status?`<label>${l}<select id="f_${id}">${x.status.map(v=>`<option>${v}</option>`).join('')}</select></label>`:id==='tampil'?`<label>${l}<select id="f_tampil"><option>Ya</option><option>Tidak</option></select></label>`:`<label>${l}${id==='isi'||id==='ringkas'||id==='deskripsi'||id==='keterangan'?`<textarea id="f_${id}" rows="4"></textarea>`:`<input id="f_${id}">`}</label>`).join('')}<div class="full"><input id="cmsFile" type="file" accept="image/jpeg,image/png,image/webp"><button class="btn" onclick="uploadCmsImage()">⬆️ Upload Foto</button><span id="uploadMsg" class="muted"></span></div><div class="full"><button class="btn" onclick="cmsSave('${key}')">💾 ${cmsEditing?'Simpan Perubahan':'Tambah '+x.title}</button></div></div><div id="cmsList" class="cms-list"></div>`;
+      cmsRenderList(key);
+      if(edit){setTimeout(()=>Object.keys(edit).forEach(f=>{if($('f_'+f))$('f_'+f).value=edit[f]??''}),0)}
+    }
+    async function renderPageManager(){
+      const e=$('cmsEditor'); const pages=[['beranda','Beranda'],['tentang','Tentang'],['sejarah','Sejarah'],['materi','5 Materi Wajib'],['materi-btq','Materi: BTQ'],['materi-ndp','Materi: NDP'],['materi-konstitusi','Materi: Konstitusi HMI'],['materi-sph-spi','Materi: SPH + SPI'],['materi-sejarah-nusantara','Materi: Sejarah Nusantara'],['pedoman-pengkaderan','Pedoman Pengkaderan'],['berita','Berita'],['agenda','Agenda'],['galeri','Galeri'],['struktur','Struktur Organisasi']];
+      e.innerHTML=`<h3>📄 Konten Halaman</h3><p class="muted">Ubah judul, pengantar, dan konten utama halaman tanpa menyentuh HTML. Tampilan website tetap dipertahankan.</p><div class="cms-form"><label>Halaman<select id="pageSlug">${pages.map(([s,n])=>`<option value="${s}">${n}</option>`).join('')}</select></label><label>Judul Halaman<input id="pageTitle"></label><label class="full">Pengantar<textarea id="pageIntro" rows="3"></textarea></label><div class="full home-only hidden" style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><label>Judul Sambutan<input id="homeWelcomeTitle"></label><label>Quote<input id="homeQuote"></label><label class="full">Teks Sambutan<textarea id="homeWelcomeText" rows="4"></textarea></label><label class="full">Teks Quote<textarea id="homeQuoteText" rows="3"></textarea></label></div><label class="full">Konten Utama<textarea id="pageBody" rows="12" placeholder="Tulis isi halaman di sini. Pisahkan paragraf dengan satu baris kosong."></textarea></label><label>Link Materi / Drive<input id="pageLink" placeholder="https://..."></label><label>Nama Tombol Link<input id="pageLinkLabel" placeholder="Buka Materi"></label><div class="full"><button class="btn" onclick="savePageCMS()">💾 Simpan Halaman</button></div></div>`;
+      const fill=()=>{const slug=$('pageSlug').value,x=cmsCache.pages?.[slug]||{};$('pageTitle').value=x.title||'';$('pageIntro').value=x.intro||'';$('pageBody').value=x.body||'';$('pageLink').value=x.link||'';$('pageLinkLabel').value=x.linkLabel||'';const home=slug==='beranda';document.querySelectorAll('.home-only').forEach(el=>el.classList.toggle('hidden',!home));if(home){const s=cmsCache.site||{};$('homeWelcomeTitle').value=s.homeWelcomeTitle||'';$('homeWelcomeText').value=s.homeWelcomeText||'';$('homeQuote').value=s.homeQuote||'';$('homeQuoteText').value=s.homeQuoteText||''}}; $('pageSlug').onchange=fill; fill();
+    }
+    async function savePageCMS(){const slug=$('pageSlug').value;try{await api('/api/admin/cms/pages/'+slug,{method:'PUT',body:{title:$('pageTitle').value,intro:$('pageIntro').value,body:$('pageBody').value,link:$('pageLink').value,linkLabel:$('pageLinkLabel').value}});if(slug==='beranda'){await api('/api/admin/cms/home-text',{method:'PUT',body:{homeWelcomeTitle:$('homeWelcomeTitle').value,homeWelcomeText:$('homeWelcomeText').value,homeQuote:$('homeQuote').value,homeQuoteText:$('homeQuoteText').value}})}cmsCache=await api('/api/cms');alert('Konten halaman tersimpan.');renderPageManager();}catch(e){alert(e.message)}}
+    async function uploadCmsImage() { const f = $('cmsFile').files[0]; if (!f) return alert('Pilih foto terlebih dahulu.'); const fd = new FormData(); fd.append('image', f); const r = await fetch('/api/admin/cms/upload', { method: 'POST', body: fd, credentials: 'same-origin' }); const d = await r.json(); if (!r.ok) return alert(d.message || 'Upload gagal'); if ($('f_gambar')) $('f_gambar').value = d.url; if ($('f_foto')) $('f_foto').value = d.url; $('uploadMsg').textContent = ' Upload berhasil'; }
+    async function cmsSave(key) { const fields = { berita: ['judul','tanggal','kategori','ringkas','isi','gambar','status'], galeri: ['judul','tanggal','gambar','deskripsi'], agenda: ['tanggal','judul','lokasi','keterangan','status'], struktur: ['nama','jabatan','bagian','periode','urutan','tampil','foto'] }[key]; const obj = {}; fields.forEach(f => obj[f] = ($('f_' + f)?.value || '').trim()); if (!obj.judul && key !== 'struktur' || key === 'struktur' && !obj.nama) return alert('Isi data utama terlebih dahulu.'); try { await api('/api/admin/cms/' + key + (cmsEditing ? '/' + cmsEditing.id : ''), { method: cmsEditing ? 'PUT' : 'POST', body: obj }); alert(cmsEditing ? 'Perubahan disimpan.' : 'Berhasil disimpan.'); cmsCache = await api('/api/cms'); cmsOpen(key) } catch (e) { alert(e.message) } }
+    function cmsEdit(key,id){const x=(cmsCache[key]||[]).find(v=>Number(v.id)===Number(id));if(!x)return;cmsOpen(key,x)}
+    async function cmsDelete(key, id) { if (!confirm('Hapus konten ini?')) return; try { await api('/api/admin/cms/' + key + '/' + id, { method: 'DELETE' }); cmsCache = await api('/api/cms'); cmsOpen(key) } catch (e) { alert(e.message) } }
+    function cmsRenderList(key) { const arr = cmsCache[key] || []; const title = key === 'struktur' ? 'nama' : 'judul'; $('cmsList').innerHTML = arr.map(x => `<div class="cms-item"><div>${(x.gambar || x.foto) ? `<img src="${esc(x.gambar || x.foto)}" loading="lazy">` : ''}<b>${esc(x[title] || '(tanpa judul)')}</b><br><small>${esc(x.bagian || x.tanggal || x.periode || x.status || '')}${x.urutan ? ' • Urutan '+esc(x.urutan) : ''}</small></div><div class="cms-actions"><button class="btn2" onclick="cmsEdit('${key}',${x.id})">Edit</button><button class="btn2 danger" onclick="cmsDelete('${key}',${x.id})">Hapus</button></div></div>`).join('') || '<p class="muted">Belum ada data.</p>' }
+    async function renderMediaManager() {
+      const e = $('cmsEditor');
+      e.innerHTML = `<div class="media-head"><div><h3>🗂️ Media Manager</h3><p class="muted">Kelola foto CMS dari satu tempat. Foto pendaftar pribadi tidak ditampilkan di sini.</p></div><div class="media-tools"><input id="mediaSearch" placeholder="🔎 Cari media..."><input id="mediaUpload" type="file" accept="image/jpeg,image/png,image/webp"><button class="btn" onclick="mediaUploadNow()">⬆️ Upload Foto</button></div></div><div id="mediaGrid" class="media-grid"></div>`;
+      $('mediaSearch').oninput = renderMediaList; await renderMediaList();
+    }
+    async function renderMediaList() { try { const q = encodeURIComponent($('mediaSearch')?.value || ''); const arr = await api('/api/admin/cms/media?q=' + q); const g = $('mediaGrid'); if (!g) return; g.innerHTML = arr.map(x => `<article class="media-card"><img src="${esc(x.url)}" alt="${esc(x.originalName || x.name)}" loading="lazy"><div class="media-meta"><b>${esc(x.originalName || x.name)}</b><small>${esc(x.mime || 'image')} · ${(Number(x.size || 0) / 1024 / 1024).toFixed(2)} MB</small></div><div class="cms-actions"><button class="btn2" onclick="mediaUse('${encodeURIComponent(x.url)}')">Pakai Foto</button><button class="btn2 danger" onclick="mediaDelete(${x.id})">Hapus</button></div></article>`).join('') || '<p class="muted">Belum ada media CMS. Upload foto pertama kamu.</p>' } catch (e) { alert(e.message) } }
+    async function mediaUploadNow() { const f = $('mediaUpload')?.files?.[0]; if (!f) return alert('Pilih foto terlebih dahulu.'); const fd = new FormData(); fd.append('image', f); try { const r = await fetch('/api/admin/cms/upload', { method: 'POST', body: fd, credentials: 'same-origin' }); const d = await r.json(); if (!r.ok) throw new Error(d.message || 'Upload gagal'); await renderMediaList(); alert('Foto berhasil diupload dan masuk Media Manager.') } catch (e) { alert(e.message) } }
+    function mediaUse(encoded) { const url = decodeURIComponent(encoded); if ($('f_gambar')) { $('f_gambar').value = url; cmsTab === 'berita' && $('f_gambar').scrollIntoView({ behavior: 'smooth', block: 'center' }); return } if ($('f_foto')) { $('f_foto').value = url; return } if ($('siteBackground')) { $('siteBackground').value = url; return } alert('Buka form Berita, Galeri, Struktur, atau Profil terlebih dahulu, lalu pilih Media Manager untuk mengisi foto.'); }
+    async function mediaDelete(id) { if (!confirm('Hapus media ini? Jika sedang dipakai website, sistem akan menolaknya.')) return; try { const d = await api('/api/admin/cms/media/' + id, { method: 'DELETE' }); alert(d.message); await renderMediaList() } catch (e) { alert(e.message) } }
+    function fillProfile() { const c = cmsCache; const s = c.site || {}, t = c.tentang || {};['siteTitle','siteDescription','heroTitle','heroText','contactWhatsapp','contactInstagram','contactEmail','contactAddress','siteBackground','footerText','copyrightText'].forEach(id => $(id).value = s[{siteTitle:'title',siteDescription:'description',heroTitle:'heroTitle',heroText:'heroText',contactWhatsapp:'contactWhatsapp',contactInstagram:'contactInstagram',contactEmail:'contactEmail',contactAddress:'contactAddress',siteBackground:'background',footerText:'footerText',copyrightText:'copyright'}[id]] || ''); $('aboutSejarah').value = t.sejarah || ''; $('aboutVisi').value = t.visi || ''; $('aboutMisi').value = t.misi || '' }
+    async function uploadBackground() { const f = $('bgFile').files[0]; if (!f) return alert('Pilih gambar background.'); const fd = new FormData(); fd.append('image', f); const r = await fetch('/api/admin/cms/upload', { method: 'POST', body: fd, credentials: 'same-origin' }); const d = await r.json(); if (!r.ok) return alert(d.message || 'Upload gagal'); $('siteBackground').value = d.url; alert('Background berhasil diunggah.'); }
+    async function saveProfile() { try { await api('/api/admin/cms/site', { method: 'PUT', body: { title: $('siteTitle').value, description: $('siteDescription').value, heroTitle: $('heroTitle').value, heroText: $('heroText').value, contactWhatsapp: $('contactWhatsapp').value, contactInstagram: $('contactInstagram').value, contactEmail: $('contactEmail').value, contactAddress: $('contactAddress').value, background: $('siteBackground').value, footerText: $('footerText').value, copyright: $('copyrightText').value } }); await api('/api/admin/cms/tentang', { method: 'PUT', body: { sejarah: $('aboutSejarah').value, visi: $('aboutVisi').value, misi: $('aboutMisi').value } }); alert('Profil & kontak tersimpan.'); loadCMSAdmin() } catch (e) { alert(e.message) } }
+    show();
+  </script>
+</body>
+
+</html>

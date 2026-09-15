@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "registration_no": "HMI-UNPI-2026-0001",
+    "nama": "agus",
+    "wa": "09",
+    "prodi": "s1",
+    "angkatan": "2026",
+    "alasan": "bergabung",
+    "photo": null,
+    "status": "Ditolak",
+    "admin_note": "Belum memenuhi",
+    "created_at": "2026-09-09T20:29:02.225Z",
+    "updated_at": "2026-09-10T16:22:58.257Z"
+  }
+]

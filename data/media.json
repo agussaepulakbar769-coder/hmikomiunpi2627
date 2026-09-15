@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "1789416299367-vy2gnjwm3pd.jpg",
+    "url": "/uploads/1789416299367-vy2gnjwm3pd.jpg",
+    "originalName": "background.jpg",
+    "mime": "image/jpeg",
+    "size": 139280,
+    "storage": "local",
+    "created_at": "2026-09-14T20:04:59.369Z"
+  },
+  {
+    "id": 2,
+    "name": "1789416320031-gyarxaf28ic.png",
+    "url": "/uploads/1789416320031-gyarxaf28ic.png",
+    "originalName": "hmi.png",
+    "mime": "image/png",
+    "size": 28564,
+    "storage": "local",
+    "created_at": "2026-09-14T20:05:20.032Z"
+  },
+  {
+    "id": 3,
+    "name": "1789416734465-ir2nzyvr03.png",
+    "url": "/uploads/1789416734465-ir2nzyvr03.png",
+    "originalName": "logo.png",
+    "mime": "image/png",
+    "size": 99037,
+    "storage": "local",
+    "created_at": "2026-09-14T20:12:14.468Z"
+  },
+  {
+    "id": 4,
+    "name": "1789416764487-d2erqkip96p.png",
+    "url": "/uploads/1789416764487-d2erqkip96p.png",
+    "originalName": "hmi.png",
+    "mime": "image/png",
+    "size": 28564,
+    "storage": "local",
+    "created_at": "2026-09-14T20:12:44.488Z"
+  },
+  {
+    "id": 5,
+    "name": "1789416799810-cf8d17jr46.png",
+    "url": "/uploads/1789416799810-cf8d17jr46.png",
+    "originalName": "hmi.png",
+    "mime": "image/png",
+    "size": 28564,
+    "storage": "local",
+    "created_at": "2026-09-14T20:13:19.811Z"
+  }
+]

@@ -1,0 +1,165 @@
+{
+  "site": {
+    "title": "hmi komisariat unpi",
+    "description": "",
+    "heroTitle": "",
+    "heroText": "",
+    "contactWhatsapp": "087784154019",
+    "contactInstagram": "hmikomisariatunpi",
+    "contactEmail": "agussaepulakbar769@gmail.com",
+    "contactAddress": "",
+    "background": "/background.jpg",
+    "footerText": "Berproses • Berorganisasi • Berkontribusi",
+    "copyright": "HMI Komisariat UNPI",
+    "homeWelcomeTitle": "Tempat Berproses dan Bertumbuh",
+    "homeWelcomeText": "Website ini menjadi pusat informasi HMI Komisariat UNPI. Temukan berita kegiatan, agenda, galeri, struktur pengurus, sejarah, database kader, materi wajib, serta pendaftaran kader.",
+    "homeQuote": "“Yakin Usaha Sampai”",
+    "homeQuoteText": "Belajar hari ini, berproses untuk masa depan."
+  },
+  "berita": [
+    {
+      "id": 1,
+      "judul": "hmi akan ada ini",
+      "tanggal": "12 november 2026",
+      "kategori": "dan itu",
+      "ringkas": "",
+      "isi": "",
+      "gambar": "/uploads/1789416320031-gyarxaf28ic.png",
+      "status": "Publikasi"
+    }
+  ],
+  "galeri": [
+    {
+      "id": 1,
+      "judul": "hmi akan ada ini",
+      "tanggal": "12 november 2026",
+      "gambar": "/uploads/1789416734465-ir2nzyvr03.png",
+      "deskripsi": "nghh"
+    }
+  ],
+  "agenda": [
+    {
+      "id": 1,
+      "tanggal": "12 november 2026",
+      "judul": "hmi akan ada ini",
+      "lokasi": "unpi cianjur",
+      "keterangan": "hfsrgj",
+      "status": "Akan Datang"
+    }
+  ],
+  "tentang": {
+    "sejarah": "",
+    "visi": "",
+    "misi": ""
+  },
+  "struktur": [
+    {
+      "id": 1,
+      "nama": "agus",
+      "jabatan": "ketua",
+      "periode": "2026-2027",
+      "foto": "/uploads/1789416799810-cf8d17jr46.png",
+      "bagian": "ketus umum",
+      "urutan": "1",
+      "tampil": "Ya"
+    }
+  ],
+  "pages": {
+    "beranda": {
+      "title": "HMI Komisariat UNPI",
+      "intro": "",
+      "body": ""
+    },
+    "tentang": {
+      "title": "Tentang HMI Komisariat UNPI",
+      "intro": ".",
+      "body": "jaduafofUFAUGAKIFa",
+      "link": "",
+      "linkLabel": "Buka Materi"
+    },
+    "sejarah": {
+      "title": "Sejarah HMI Komisariat UNPI",
+      "intro": "sejarah hmi",
+      "body": "1. Membina kader agar memiliki integritas keislaman dan keilmuan yang kuat.\n2. Mengembangkan intelektualitas kader agar mampu berpikir kritis, ilmiah, dan solutif.\n3. Mendorong kader untuk berkarya dan menciptakan inovasi yang bermanfaat bagi masyarakat.\n4. Menumbuhkan jiwa pengabdian melalui kontribusi nyata bagi umat, bangsa, dan negara.\n5. Membentuk kepemimpinan kader yang amanah, bertanggung jawab, dan berorientasi pada kemaslahatan.\n6. Memperjuangkan terwujudnya masyarakat adil makmur yang berlandaskan nilai-nilai Islam.",
+      "link": "",
+      "linkLabel": "Buka Materi"
+    },
+    "materi": {
+      "title": "5 Materi Wajib",
+      "intro": "Ruang belajar kader HMI Komisariat UNPI.",
+      "body": ""
+    },
+    "materi-btq": {
+      "title": "BTQ",
+      "intro": "Materi wajib BTQ.",
+      "body": "",
+      "link": "https://drive.google.com/drive/folders/1kQKLVQnC4MC5Nu6DuiWldrB7XEcFnV-C",
+      "linkLabel": "Buka Folder Materi BTQ"
+    },
+    "materi-ndp": {
+      "title": "Nilai Dasar Perjuangan (NDP)",
+      "intro": "Materi wajib Nilai Dasar Perjuangan.",
+      "body": "",
+      "link": "https://drive.google.com/drive/folders/1zESDrc4Pd3hwITpTbsiiesTkqgtmtOpB",
+      "linkLabel": "Buka Folder Materi NDP"
+    },
+    "materi-konstitusi": {
+      "title": "Konstitusi HMI",
+      "intro": "Materi wajib Konstitusi HMI.",
+      "body": "",
+      "link": "https://drive.google.com/drive/folders/11xhWvIugskIzaFAaEW4VOg8VHncqrcEM",
+      "linkLabel": "Buka Folder Materi Konstitusi"
+    },
+    "materi-sph-spi": {
+      "title": "SPH + SPI",
+      "intro": "Materi wajib SPH + SPI.",
+      "body": "",
+      "link": "https://drive.google.com/drive/folders/17Dqy-G-8JJ1prbFYo5vdZ5w57p6y-RA4",
+      "linkLabel": "Buka Folder Materi SPH + SPI"
+    },
+    "materi-sejarah-nusantara": {
+      "title": "Sejarah Nusantara",
+      "intro": "Materi wajib Sejarah Nusantara.",
+      "body": "",
+      "link": "https://drive.google.com/drive/folders/17Dqy-G-8JJ1prbFYo5vdZ5w57p6y-RA4",
+      "linkLabel": "Buka Folder Materi Sejarah Nusantara"
+    },
+    "pedoman-pengkaderan": {
+      "title": "Pedoman Pengkaderan",
+      "intro": "Pedoman Pengkaderan HMI. Bagian ini dipisahkan dari 5 Materi Wajib.",
+      "body": "",
+      "link": "https://drive.google.com/drive/folders/1OAqHfrOXLwQ7Uw2TAn1zFeGgUiewaoxY",
+      "linkLabel": "Buka Folder Pedoman Pengkaderan"
+    },
+    "berita": {
+      "title": "Berita",
+      "intro": "",
+      "body": ""
+    },
+    "agenda": {
+      "title": "Agenda",
+      "intro": "",
+      "body": ""
+    },
+    "galeri": {
+      "title": "Galeri",
+      "intro": "",
+      "body": ""
+    },
+    "struktur": {
+      "title": "Struktur Organisasi",
+      "intro": "",
+      "body": ""
+    },
+    "kader": {
+      "title": "Database Kader",
+      "intro": "",
+      "body": ""
+    },
+    "kontak": {
+      "title": "Kontak",
+      "intro": "",
+      "body": ""
+    }
+  }
+}

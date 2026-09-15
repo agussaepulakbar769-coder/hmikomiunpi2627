@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Cek Penerimaan | HMI CABANG CIANJUR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar"><a class="brand" href="index.html">HMI CABANG CIANJUR</a>
+        <div class="nav-menu"><a href="index.html">Beranda</a><a href="daftar.html">Pendaftaran</a><a
+                href="cek-penerimaan.html">Cek Penerimaan</a></div>
+    </nav>
+    <main class="container">
+        <section class="section narrow">
+            <h1>Cek Hasil Penerimaan</h1>
+            <p>Masukkan nomor pendaftaran yang diberikan setelah formulir dikirim.</p>
+            <form class="form" id="cek"><label>Nomor Pendaftaran<input id="no" required
+                        placeholder="Contoh: HMI-UNPI-2026-0001"></label><button class="btn">Cek Sekarang</button>
+            </form>
+            <div id="hasil"></div>
+            <p style="margin-top:24px;text-align:center"><a class="btn" href="admin.html?login=1">🔐 Login sebagai
+                    Admin</a></p>
+        </section>
+    </main>
+    <script>
+        cek.onsubmit = async e => { e.preventDefault(); hasil.innerHTML = "Memeriksa..."; const r = await fetch("/api/cek/" + encodeURIComponent(no.value)); const d = await r.json(); if (!r.ok) { hasil.innerHTML = "<p>" + d.message + "</p>"; return } hasil.innerHTML = `<div class="section"><h2>${d.status === "Diterima" ? "Selamat!" : "Status Pendaftaran"}</h2><p><b>${d.nama}</b></p><p>Nomor: ${d.registration_no}</p><p>Prodi: ${d.prodi}</p><p>Angkatan: ${d.angkatan}</p><h3>Status: ${d.status}</h3>${d.admin_note ? `<p>Catatan: ${d.admin_note}</p>` : ""}</div>` };
+    </script>
+</body>
+
+</html>

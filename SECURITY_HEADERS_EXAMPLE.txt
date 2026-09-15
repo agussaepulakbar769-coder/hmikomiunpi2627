@@ -1,0 +1,11 @@
+# Example security headers for a production reverse proxy.
+# Adapt syntax to your hosting provider before enabling.
+#
+# Strict-Transport-Security: max-age=31536000; includeSubDomains
+# X-Content-Type-Options: nosniff
+# Referrer-Policy: strict-origin-when-cross-origin
+# Permissions-Policy: camera=(), microphone=(), geolocation=()
+# Content-Security-Policy: default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'
+#
+# Do not blindly enable a strict CSP until every existing inline script/style
+# and third-party asset in the site has been audited.

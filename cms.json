@@ -1,0 +1,122 @@
+{
+  "site": {
+    "title": "hmi komisariat unpi",
+    "description": "",
+    "heroTitle": "",
+    "heroText": "",
+    "contactWhatsapp": "087784154019",
+    "contactInstagram": "hmikomisariatunpi",
+    "contactEmail": "agussaepulakbar769@gmail.com",
+    "contactAddress": "",
+    "background": "/background.jpg",
+    "footerText": "Berproses • Berorganisasi • Berkontribusi",
+    "copyright": "HMI Komisariat UNPI",
+    "homeWelcomeTitle": "Tempat Berproses dan Bertumbuh",
+    "homeWelcomeText": "Website ini menjadi pusat informasi HMI Komisariat UNPI. Temukan berita kegiatan, agenda, galeri, struktur pengurus, sejarah, database kader, materi wajib, serta pendaftaran kader.",
+    "homeQuote": "“Yakin Usaha Sampai”",
+    "homeQuoteText": "Belajar hari ini, berproses untuk masa depan."
+  },
+  "berita": [],
+  "galeri": [],
+  "agenda": [],
+  "tentang": {
+    "sejarah": "",
+    "visi": "",
+    "misi": ""
+  },
+  "struktur": [],
+  "pages": {
+    "beranda": {
+      "title": "HMI Komisariat UNPI",
+      "intro": "",
+      "body": ""
+    },
+    "tentang": {
+      "title": "Tentang HMI Komisariat UNPI",
+      "intro": "",
+      "body": ""
+    },
+    "sejarah": {
+      "title": "Sejarah HMI Komisariat UNPI",
+      "intro": "",
+      "body": ""
+    },
+    "materi": {
+      "title": "5 Materi Wajib",
+      "intro": "Ruang belajar kader HMI Komisariat UNPI.",
+      "body": ""
+    },
+    "materi-btq": {
+      "title": "BTQ",
+      "intro": "Materi wajib BTQ.",
+      "body": "",
+      "link": "https://drive.google.com/drive/folders/1kQKLVQnC4MC5Nu6DuiWldrB7XEcFnV-C",
+      "linkLabel": "Buka Folder Materi BTQ"
+    },
+    "materi-ndp": {
+      "title": "Nilai Dasar Perjuangan (NDP)",
+      "intro": "Materi wajib Nilai Dasar Perjuangan.",
+      "body": "",
+      "link": "https://drive.google.com/drive/folders/1zESDrc4Pd3hwITpTbsiiesTkqgtmtOpB",
+      "linkLabel": "Buka Folder Materi NDP"
+    },
+    "materi-konstitusi": {
+      "title": "Konstitusi HMI",
+      "intro": "Materi wajib Konstitusi HMI.",
+      "body": "",
+      "link": "https://drive.google.com/drive/folders/11xhWvIugskIzaFAaEW4VOg8VHncqrcEM",
+      "linkLabel": "Buka Folder Materi Konstitusi"
+    },
+    "materi-sph-spi": {
+      "title": "SPH + SPI",
+      "intro": "Materi wajib SPH + SPI.",
+      "body": "",
+      "link": "https://drive.google.com/drive/folders/17Dqy-G-8JJ1prbFYo5vdZ5w57p6y-RA4",
+      "linkLabel": "Buka Folder Materi SPH + SPI"
+    },
+    "materi-sejarah-nusantara": {
+      "title": "Sejarah Nusantara",
+      "intro": "Materi wajib Sejarah Nusantara.",
+      "body": "",
+      "link": "https://drive.google.com/drive/folders/17Dqy-G-8JJ1prbFYo5vdZ5w57p6y-RA4",
+      "linkLabel": "Buka Folder Materi Sejarah Nusantara"
+    },
+    "pedoman-pengkaderan": {
+      "title": "Pedoman Pengkaderan",
+      "intro": "Pedoman Pengkaderan HMI. Bagian ini dipisahkan dari 5 Materi Wajib.",
+      "body": "",
+      "link": "https://drive.google.com/drive/folders/1OAqHfrOXLwQ7Uw2TAn1zFeGgUiewaoxY",
+      "linkLabel": "Buka Folder Pedoman Pengkaderan"
+    },
+    "berita": {
+      "title": "Berita",
+      "intro": "",
+      "body": ""
+    },
+    "agenda": {
+      "title": "Agenda",
+      "intro": "",
+      "body": ""
+    },
+    "galeri": {
+      "title": "Galeri",
+      "intro": "",
+      "body": ""
+    },
+    "struktur": {
+      "title": "Struktur Organisasi",
+      "intro": "",
+      "body": ""
+    },
+    "kader": {
+      "title": "Database Kader",
+      "intro": "",
+      "body": ""
+    },
+    "kontak": {
+      "title": "Kontak",
+      "intro": "",
+      "body": ""
+    }
+  }
+}
